@@ -1,7 +1,4 @@
-# pdNet
-Code for PDNet document binarization
-# pdNet
-# Training ENet
+# Training pdNet
 
 This work is under review for Special issue for Pattern Recognition letters on .
 
