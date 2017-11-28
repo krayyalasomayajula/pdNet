@@ -1,0 +1,698 @@
+DataParallelTable: 4 x nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> (13) -> (14) -> (15) -> (16) -> (17) -> (18) -> (19) -> (20) -> (21) -> (22) -> (23) -> (24) -> (25) -> (26) -> (27) -> (28) -> (29) -> (30) -> (31) -> (32) -> output]
+  (1): nn.ConcatTable {
+    input
+      |`-> (1): cudnn.SpatialConvolution(3 -> 13, 3x3, 2,2, 1,1)
+       `-> (2): nn.SpatialMaxPooling(2x2, 2,2)
+       ... -> output
+  }
+  (2): nn.JoinTable
+  (3): nn.SpatialBatchNormalization (4D) (16)
+  (4): nn.PReLU
+  (5): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(16 -> 16, 2x2, 2,2) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |      (9): nn.SpatialDropout(0.010000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> (2) -> (3) -> output]
+               (1): nn.Identity
+               (2): nn.SpatialMaxPooling(2x2, 2,2)
+               (3): nn.Padding
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (6): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |      (9): nn.SpatialDropout(0.010000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (7): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |      (9): nn.SpatialDropout(0.010000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (8): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |      (9): nn.SpatialDropout(0.010000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (9): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |      (9): nn.SpatialDropout(0.010000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (10): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 32, 2x2, 2,2) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> (2) -> (3) -> output]
+               (1): nn.Identity
+               (2): nn.SpatialMaxPooling(2x2, 2,2)
+               (3): nn.Padding
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (11): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (12): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 2,2, 2,2)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (13): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 5x1, 1,1, 2,0) without bias
+        |      (5): cudnn.SpatialConvolution(32 -> 32, 1x5, 1,1, 0,2)
+        |      (6): nn.SpatialBatchNormalization (4D) (32)
+        |      (7): nn.PReLU
+        |      (8): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (9): nn.SpatialBatchNormalization (4D) (128)
+        |      (10): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (14): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 4,4, 4,4)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (15): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (16): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 8,8, 8,8)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (17): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 5x1, 1,1, 2,0) without bias
+        |      (5): cudnn.SpatialConvolution(32 -> 32, 1x5, 1,1, 0,2)
+        |      (6): nn.SpatialBatchNormalization (4D) (32)
+        |      (7): nn.PReLU
+        |      (8): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (9): nn.SpatialBatchNormalization (4D) (128)
+        |      (10): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (18): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 16,16, 16,16)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (19): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (20): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 2,2, 2,2)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (21): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 5x1, 1,1, 2,0) without bias
+        |      (5): cudnn.SpatialConvolution(32 -> 32, 1x5, 1,1, 0,2)
+        |      (6): nn.SpatialBatchNormalization (4D) (32)
+        |      (7): nn.PReLU
+        |      (8): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (9): nn.SpatialBatchNormalization (4D) (128)
+        |      (10): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (22): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 4,4, 4,4)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (23): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (24): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 8,8, 8,8)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (25): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): cudnn.SpatialConvolution(32 -> 32, 5x1, 1,1, 2,0) without bias
+        |      (5): cudnn.SpatialConvolution(32 -> 32, 1x5, 1,1, 0,2)
+        |      (6): nn.SpatialBatchNormalization (4D) (32)
+        |      (7): nn.PReLU
+        |      (8): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (9): nn.SpatialBatchNormalization (4D) (128)
+        |      (10): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (26): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 32, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (32)
+        |      (3): nn.PReLU
+        |      (4): nn.SpatialDilatedConvolution(32 -> 32, 3x3, 1,1, 16,16, 16,16)
+        |      (5): nn.SpatialBatchNormalization (4D) (32)
+        |      (6): nn.PReLU
+        |      (7): cudnn.SpatialConvolution(32 -> 128, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (128)
+        |      (9): nn.SpatialDropout(0.100000)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): nn.PReLU
+  }
+  (27): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> output]
+        |      (1): cudnn.SpatialConvolution(128 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): cudnn.ReLU
+        |      (4): nn.SpatialFullConvolution(16 -> 16, 3x3, 2,2, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): cudnn.ReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> (2) -> (3) -> (4) -> output]
+               (1): nn.Identity
+               (2): cudnn.SpatialConvolution(128 -> 64, 1x1) without bias
+               (3): nn.SpatialBatchNormalization (4D) (64)
+               (4): nn.SpatialMaxUnpooling associated to nn.SpatialMaxPooling(2x2, 2,2)
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): cudnn.ReLU
+  }
+  (28): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): cudnn.ReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): cudnn.ReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): cudnn.ReLU
+  }
+  (29): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (16)
+        |      (3): cudnn.ReLU
+        |      (4): cudnn.SpatialConvolution(16 -> 16, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (16)
+        |      (6): cudnn.ReLU
+        |      (7): cudnn.SpatialConvolution(16 -> 64, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (64)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): cudnn.ReLU
+  }
+  (30): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> output]
+        |      (1): cudnn.SpatialConvolution(64 -> 4, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (4)
+        |      (3): cudnn.ReLU
+        |      (4): nn.SpatialFullConvolution(4 -> 4, 3x3, 2,2, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (4)
+        |      (6): cudnn.ReLU
+        |      (7): cudnn.SpatialConvolution(4 -> 16, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (16)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> (2) -> (3) -> (4) -> output]
+               (1): nn.Identity
+               (2): cudnn.SpatialConvolution(64 -> 16, 1x1) without bias
+               (3): nn.SpatialBatchNormalization (4D) (16)
+               (4): nn.SpatialMaxUnpooling associated to nn.SpatialMaxPooling(2x2, 2,2)
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): cudnn.ReLU
+  }
+  (31): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> output]
+    (1): nn.ConcatTable {
+      input
+        |`-> (1): nn.Sequential {
+        |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> output]
+        |      (1): cudnn.SpatialConvolution(16 -> 4, 1x1) without bias
+        |      (2): nn.SpatialBatchNormalization (4D) (4)
+        |      (3): cudnn.ReLU
+        |      (4): cudnn.SpatialConvolution(4 -> 4, 3x3, 1,1, 1,1)
+        |      (5): nn.SpatialBatchNormalization (4D) (4)
+        |      (6): cudnn.ReLU
+        |      (7): cudnn.SpatialConvolution(4 -> 16, 1x1) without bias
+        |      (8): nn.SpatialBatchNormalization (4D) (16)
+        |    }
+         `-> (2): nn.Sequential {
+               [input -> (1) -> output]
+               (1): nn.Identity
+             }
+         ... -> output
+    }
+    (2): nn.CAddTable
+    (3): cudnn.ReLU
+  }
+  (32): nn.SpatialFullConvolution(16 -> 3, 2x2, 2,2)
+}
+

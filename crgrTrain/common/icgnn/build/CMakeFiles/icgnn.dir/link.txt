@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC  -fopenmp  -shared -Wl,-soname,libicgnn.so -o libicgnn.so CMakeFiles/icgnn.dir/init.c.o  -L/home/kalyan/torch/install/lib -lluaT /home/kalyan/torch/install/lib/libTH.so -lopenblas -lrt -lm -Wl,-rpath,/home/kalyan/torch/install/lib::::::::::::::: 

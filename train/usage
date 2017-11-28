@@ -1,0 +1,14 @@
+--============= State of the art evaluation ============
+--========= Pre-train on Synthetic data ===============
+>>>> Encoder
+th run.lua --dataset sn --year 0000 --datapath ../datasets/xSynthetic/128x256 --cachepath ../resources/Dibco/128x256/cache/encoder --model models/encoder.lua --save ../resources/Dibco/128x256/trained/encoder --imHeight 128 --imWidth 256 --labelHeight 16 --labelWidth 32 --batchSize 30 --maxepoch 20
+>>>> Decoder
+th run.lua --dataset sn --year 0000 --datapath ../datasets/xSynthetic/128x256 --cachepath ../resources/Dibco/128x256/cache/decoder --model models/decoder.lua --save ../resources/Dibco/128x256/trained/decoder --imHeight 128 --imWidth 256 --labelHeight 128 --labelWidth 256 --batchSize 30 --maxepoch 20 --CNNModel ../resources/Dibco/128x256/trained/encoder
+
+th run.lua --dataset db --year 2009 --datapath ../datasets/xDibco/128x256 --cachepath ../resources/Dibco/128x256/cache/encoder --model models/encoder.lua --save ../resources/Dibco/128x256/trained/encoder --imHeight 128 --imWidth 256 --labelHeight 16 --labelWidth 32 --batchSize 30 --maxepoch 20 --ptModel ../resources/Dibco/128x256/trained/encoder/model-0.net
+
+th run.lua --dataset db --year 2009 --datapath ../datasets/xDibco/128x256 --cachepath ../resources/Dibco/128x256/cache/encoder --model models/encoder.lua --save ../resources/Dibco/128x256/trained/encoder --imHeight 128 --imWidth 256 --labelHeight 16 --labelWidth 32 --batchSize 30 --maxepoch 20
+th run.lua --dataset db --year 2009 --datapath ../datasets/xDibco/128x256 --cachepath ../resources/Dibco/128x256/cache/decoder --model models/decoder.lua --save ../resources/Dibco/128x256/trained/decoder --imHeight 128 --imWidth 256 --labelHeight 128 --labelWidth 256 --batchSize 30 --CNNModel ../resources/Dibco/128x256/trained/encoder --maxepoch 20
+th run.lua --dataset db --year 2009 --datapath ../datasets/xDibco/128x256 --cachepath ../resources/Dibco/128x256/cache/decoder --model models/pdNet.lua --save ../resources/Dibco/128x256/trained/pdNet --imHeight 128 --imWidth 256 --labelHeight 128 --labelWidth 256 --batchSize 20 --CNNModel ../resources/Dibco/128x256/trained/decoder --maxepoch 20
+cd ../visualize;th demo_PDdibco.lua -i ../datasets/xDibco/128x256/valid -d ../resources/Dibco/128x256/trained/ -m pdNet --year 2009 --dataset db -o ../datasets/xDibco/xOutput_pdnet_128x256 --devID 2
+cd ../utils;python dibcoImgJoin.py -i ../datasets/xDibco/xOutput_pdnet_128x256 -o ../datasets/xDibco/jOutput_pdnet_128x256 -c ../../ENet/datasets/Dibco/pngs/img
