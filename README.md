@@ -6,8 +6,8 @@ Currently the network can be trained on synthetic and DIBCO dataset:
 
 | Datasets | Input Resolution | Output Resolution^ | # of classes |
 |:--------:|:----------------:|:------------------:|:------------:|
-| [Synthetic] | 128x256 | 16x32 | 2 |
-| [DIBCO] | 128x256 | 16x32 | 2 |
+| Synthetic | 128x256 | 16x32 | 2 |
+| DIBCO | 128x256 | 16x32 | 2 |
 
 ^ is the encoder output resolution; decoder output resolution is the same as that of the input image. 
 The datasets are avaialble [here](https://drive.google.com/open?id=1P6Lmo_vwMTJtbPJQLZPkSMlqqd-CapJo)
