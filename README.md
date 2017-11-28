@@ -1,15 +1,15 @@
 # Training pdNet
 
-This work is under review for Special issue for Pattern Recognition letters on .
+This work is under review for Special issue for Pattern Recognition letters on Graphonomics.
 
 Currently the network can be trained on synthetic and DIBCO dataset:
 
 | Datasets | Input Resolution | Output Resolution^ | # of classes |
 |:--------:|:----------------:|:------------------:|:------------:|
-| [Synthetic](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/) | 128x256 | 16x32 | 2 |
-| [DIBCO](https://www.cityscapes-dataset.com/) | 128x256 | 16x32 | 2 |
+| [Synthetic](https://drive.google.com/open?id=1F3xp8UCu4LXwHOQgL65aqQfkxMIfbCG3) | 128x256 | 16x32 | 2 |
+| [DIBCO](https://drive.google.com/open?id=1F3xp8UCu4LXwHOQgL65aqQfkxMIfbCG3) | 128x256 | 16x32 | 2 |
 
-^ is the encoder output resolution; decoder output resolution is the same as that of the input image. Folder arrangement of the datasets compatible with our data-loader has been explained in detail [here](data/README.md).
+^ is the encoder output resolution; decoder output resolution is the same as that of the input image.
 
 ## Files/folders and their usage:
 
