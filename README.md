@@ -13,12 +13,12 @@ Currently the network can be trained on synthetic and DIBCO dataset:
 
 ## Files/folders and their usage:
 
-* [run.lua](run.lua)    : main file
-* [opts.lua](opts.lua)  : contains all the input options used by the tranining script
+* [run.lua](train/run.lua)    : main file
+* [opts.lua](train/opts.lua)  : contains all the input options used by the tranining script
 * [data](data)          : data loaders for loading datasets
 * models                : all the model architectures are defined here
-* [train.lua](train.lua) : loading of models and error calculation
-* [test.lua](test.lua)  : calculate testing error and save confusion matrices
+* [train.lua](train/train.lua) : loading of models and error calculation
+* [test.lua](train/test.lua)  : calculate testing error and save confusion matrices
 
 ## Example command for testing the code on DIBCO:
 ### Training encoder Synthetic data:
