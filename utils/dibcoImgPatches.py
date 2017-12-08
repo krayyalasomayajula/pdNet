@@ -45,7 +45,8 @@ def getImgTiles(xargs):
             print(" ====== Processing: %s ======" % fil)
             
             in_fileName = os.path.join(in_dir,fil)
-            img = cv2.imread(in_fileName)
+            res = cv2.imread(in_fileName)
+            img = cv2.resize(res,None,fx=xargs.scale, fy=xargs.scale, interpolation = cv2.INTER_CUBIC)
             
             if(xargs.gray):
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -132,18 +133,18 @@ python dibcoImgPatches.py -i ../../imgDataSets/Synthetic/original -o ../datasets
 cd ../utils;python dibcoImgPatches.py -i ../../imgDataSets/DIBCO/augmented -o ../datasets/xDibcoGray -ph 128 -pw 256 -train 1 -gray 1
 
 >>>>>>>>>>>> Balinese Datasets
-python dibcoImgPatches.py -i ../../imgDataSets/balinese/augmented/train -o ../datasets/xBalinese -ph 128 -pw 256 -train 1
-python dibcoImgPatches.py -i ../../imgDataSets/balinese/pngs/train -o ../datasets/xBalinese -ph 128 -pw 256 -valid 1
+python dibcoImgPatches.py -i ../../../gitExclude/imgDataSets/pdNet/balinese/augmented/train -o ../../../gitExclude/patches/pdNet/xBalinese -ph 128 -pw 256 -train 1 -scale 2.0
+python dibcoImgPatches.py -i ../../../gitExclude/imgDataSets/pdNet/balinese/pngs/train -o ../../../gitExclude/patches/pdNet/xBalinese -ph 128 -pw 256 -valid 1 -scale 2.0
 -- Rename valid to valid_ and validannot to validannot_
-mv ../datasets/xBalinese/128x256/valid ../datasets/xBalinese/128x256/valid_
-mv ../datasets/xBalinese/128x256/validannot ../datasets/xBalinese/128x256/validannot_
-python dibcoImgPatches.py -i ../../imgDataSets/balinese/pngs/test -o ../datasets/xBalinese -ph 128 -pw 256 -valid 1
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/valid ../../../gitExclude/patches/pdNet/xBalinese/128x256/valid_
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/validannot ../../../gitExclude/patches/pdNet/xBalinese/128x256/validannot_
+python dibcoImgPatches.py -i ../../../gitExclude/imgDataSets/pdNet/balinese/pngs/test -o ../../../gitExclude/patches/pdNet/xBalinese -ph 128 -pw 256 -valid 1 -scale 2.0
 -- Rename valid to test and validannot to testannot
 -- Rename valid_ to valid and validannot_ to validannot
-mv ../datasets/xBalinese/128x256/valid ../datasets/xBalinese/128x256/test
-mv ../datasets/xBalinese/128x256/validannot ../datasets/xBalinese/128x256/testannot
-mv ../datasets/xBalinese/128x256/valid_ ../datasets/xBalinese/128x256/valid
-mv ../datasets/xBalinese/128x256/validannot_ ../datasets/xBalinese/128x256/validannot
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/valid ../../../gitExclude/patches/pdNet/xBalinese/128x256/test
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/validannot ../../../gitExclude/patches/pdNet/xBalinese/128x256/testannot
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/valid_ ../../../gitExclude/patches/pdNet/xBalinese/128x256/valid
+mv ../../../gitExclude/patches/pdNet/xBalinese/128x256/validannot_ ../../../gitExclude/patches/pdNet/xBalinese/128x256/validannot
 
 python dibcoImgPatches.py -i ../../imgDataSets/balinese/augmented/train -o ../datasets/xBalineseGray -ph 128 -pw 256 -train 1 -gray 1
 python dibcoImgPatches.py -i ../../imgDataSets/balinese/pngs/train -o ../datasets/xBalineseGray -ph 128 -pw 256 -valid 1 -gray 1
@@ -175,6 +176,7 @@ if __name__ == "__main__":
     parser.add_argument("-train", type=int, default=0)
     parser.add_argument("-valid", type=int, default=0)
     parser.add_argument("-gray", type=int, default=0)
+    parser.add_argument("-scale", type=float, default=1.0)
 
     args = parser.parse_args()
     
